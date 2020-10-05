@@ -1,0 +1,62 @@
+---
+output: github_document
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "man/figures/README-",
+  out.width = "100%"
+)
+```
+
+# ar2832package1
+
+<!-- badges: start -->
+<!-- badges: end -->
+
+The goal of ar2832package1 is to provide functionality for my package. These functions are for use only with Arnau Rovira and no other people
+
+## Installation
+
+You can install the released version of ar2832package1 from [CRAN](https://CRAN.R-project.org) with:
+
+``` r
+install.packages("ar2832package1")
+```
+
+## Example: usage of the different functions of the package
+
+This is a basic example which shows you how to solve a common problem:
+
+```{r example}
+library(ar2832package1)
+## basic example code
+
+
+if(!file.exists("zip.test.gz")){
+  download.file(
+    "https://web.stanford.edu/~hastie/ElemStatLearn/datasets/zip.test.gz",
+    "zip.test.gz")
+}
+
+#Prepare the data:
+zip.test.gz <- data.table::fread("zip.test.gz")
+label.col.i <- which(names(zip.test.gz)=="V1")
+label.col.name <- "V1"
+X.mat <- as.matrix(zip.test.gz[, -..label.col.i])
+K <- 5
+#KMEANS FUNCTION
+res <- KMEANS(X.mat, K=5)
+res$clusters[5]
+res$centers[5]
+
+#HCLUST FUNCTION
+hc <- HCLUST(X.mat, K=5)
+hc
+
+
+```
